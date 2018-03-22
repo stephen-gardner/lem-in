@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 17:26:03 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 03:54:39 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 04:29:35 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,10 @@ void			load_graph(t_graph *graph)
 	t_bool	res;
 
 	res = TRUE;
+	line = NULL;
 	if (get_next_line(0, &line) > 0 && !set_int(TRIM(line), &graph->ants))
 		FATAL_ERROR("ERROR");
+	free(line);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (*TRIM(line) == '#')

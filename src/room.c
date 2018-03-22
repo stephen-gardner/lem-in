@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 19:01:30 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/21 17:30:15 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 00:11:24 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_room	*add_room(t_graph *graph, char **params)
 	t_room	**tmp;
 	t_room	*room;
 
-	if (*params[0] == '#'
-		|| *param[0] == 'L'
+	if (!*params[0]
+		|| *params[0] == 'L'
 		|| find_room(graph->rooms, graph->num_rooms, params[0])
 		|| !(room = build_room(params)))
 	{
@@ -27,9 +27,9 @@ t_room	*add_room(t_graph *graph, char **params)
 		return (NULL);
 	}
 	tmp = graph->rooms;
-	if (!(graph->rooms = ft_memalloc(graph->num_rooms + 1)))
+	if (!(graph->rooms = ft_memalloc(sizeof(t_room) * (graph->num_rooms + 1))))
 		DEFAULT_ERROR;
-	ft_memcpy(graph->rooms, tmp, graph->num_rooms);
+	ft_memcpy(graph->rooms, tmp, sizeof(t_room) * graph->num_rooms);
 	graph->rooms[graph->num_rooms++] = room;
 	free(tmp);
 	free(params);

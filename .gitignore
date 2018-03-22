@@ -1,8 +1,4 @@
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-.nfs*
+lem-in
+.*
 *.o
-*.a
+*.a*

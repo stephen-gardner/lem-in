@@ -10,6 +10,7 @@ CFLAGS += -Wall -Werror -Wextra -Wimplicit -g -fsanitize=address
 PRJ_SRC_DIR = src
 PRJ_OBJ_DIR = obj
 PRJ_SRC = \
+	load\
 	main\
 	room\
 	room_helper\
@@ -24,7 +25,9 @@ LIBFT_SRC = \
 	ft_memalloc\
 	ft_memcpy\
 	ft_memdel\
+	ft_memmove\
 	ft_memset\
+	ft_strchr\
 	ft_strcmp\
 	ft_stpcpy\
 	ft_strdup\

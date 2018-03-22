@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 19:21:49 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/19 18:25:50 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/21 23:05:53 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_bool		set_pos(char *s, int *coord)
 		return (FALSE);
 	if ((sign = (*s == '-') ? -1 : 1) < 0)
 		++s;
+	n = 0;
 	while (*s)
 	{
 		if ((unsigned int)(*s - '0') > 9)
@@ -71,9 +72,32 @@ char		**split(char *raw, char delim)
 		while (*raw && *raw == delim)
 			*raw++ = '\0';
 		if (*raw)
-			arr[i++] = raw;
+		{
+			arr[i] = raw;
+			trim(arr[i++], " \t\v\f\r");
+		}
 		while (*raw && *raw != delim)
 			++raw;
 	}
 	return (arr);
+}
+
+void		trim(char *raw, char *delim)
+{
+	char	*tmp;
+	int		off;
+	int		len;
+
+	if (!*raw)
+		return ;
+	off = 0;
+	while (raw[off] && ft_strchr(delim, raw[off]))
+		off++;
+	tmp = raw + off;
+	if ((len = ft_strlen(tmp)) > 0)
+		len--;
+	while (tmp[len] && ft_strchr(delim, tmp[len]))
+		len--;
+	ft_memmove(raw, tmp, ++len);
+	raw[len] = '\0';
 }

@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 18:32:19 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/19 22:15:57 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/21 23:21:06 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	add_link(t_room *dst, t_room *to_add)
 	if (find_room(dst->links, dst->num_links, to_add->name))
 		return ;
 	tmp = dst->links;
-	if (!(dst->links = ft_memalloc(dst->num_links + 1)))
+	if (!(dst->links = ft_memalloc(sizeof(t_room) * (dst->num_links + 1))))
 		DEFAULT_ERROR;
-	ft_memcpy(dst->links, tmp, dst->num_links);
+	ft_memcpy(dst->links, tmp, sizeof(t_room) * dst->num_links);
 	dst->links[dst->num_links++] = to_add;
 	free(tmp);
 }

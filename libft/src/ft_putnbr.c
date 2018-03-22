@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/18 15:23:56 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 03:48:00 by sgardner         ###   ########.fr       */
+/*   Created: 2016/12/19 03:30:12 by sgardner          #+#    #+#             */
+/*   Updated: 2018/03/22 03:31:02 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <unistd.h>
-#include "lem_in.h"
+#include "libft.h"
 
-void		fatal_error(char *msg)
+void	ft_putnbr(int n)
 {
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	exit(1);
-}
+	char	num[12];
+	int		sign;
+	int		digit;
 
-int			main(void)
-{
-	t_graph	graph;
-
-	ft_memset(&graph, 0, sizeof(t_graph));
-	load_graph(&graph);
-	if (graph.ants < 1 || graph.num_rooms < 1 || !graph.start || !graph.end)
-		FATAL_ERROR("ERROR");
-	print_loadout(&graph);
-	if (graph.start == graph.end)
-		return (0);
-	return (0);
+	num[11] = '\0';
+	sign = (n < 0) ? -1 : 1;
+	digit = 10;
+	if (!n)
+		num[digit--] = '0';
+	while (n != 0)
+	{
+		num[digit--] = (char)(((n % 10) * sign) + '0');
+		n /= 10;
+	}
+	if (sign < 0)
+		num[digit--] = '-';
+	++digit;
+	write(1, &num[digit], ft_strlen(&num[digit]));
 }

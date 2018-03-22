@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 17:26:03 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 00:16:21 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 03:54:39 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 
 static char		*add_line(t_graph *graph, char *data)
 {
-	t_line	*line;
+	t_line	**line;
 
-	if (!(line = ft_memalloc(sizeof(t_line))))
+	line = &graph->lines;
+	while (*line)
+		line = &(*line)->next;
+	if (!(*line = ft_memalloc(sizeof(t_line))))
 		DEFAULT_ERROR;
-	line->data = data;
-	line->next = graph->lines;
-	graph->lines = line;
+	(*line)->data = data;
 	return (data);
 }
 
@@ -61,7 +62,7 @@ static t_bool	parse_cmd(t_graph *graph, char *cmd)
 		target = &graph->end;
 	else
 	{
-		free(cmd);
+		add_line(graph, cmd);
 		return (TRUE);
 	}
 	if (get_next_line(0, &line) < 1)
@@ -81,10 +82,11 @@ void			load_graph(t_graph *graph)
 	t_bool	res;
 
 	res = TRUE;
+	if (get_next_line(0, &line) > 0 && !set_int(TRIM(line), &graph->ants))
+		FATAL_ERROR("ERROR");
 	while (get_next_line(0, &line) > 0)
 	{
-		trim(line, " \t\v\f\r");
-		if (*line == '#')
+		if (*TRIM(line) == '#')
 			res = parse_cmd(graph, line);
 		else
 		{

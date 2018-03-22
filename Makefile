@@ -12,8 +12,8 @@ PRJ_OBJ_DIR = obj
 PRJ_SRC = \
 	load\
 	main\
+	print\
 	room\
-	room_helper\
 	util
 PRJ_OBJ = $(patsubst %, $(PRJ_OBJ_DIR)/%.o, $(PRJ_SRC))
 PRJ_INC = -I inc
@@ -27,6 +27,7 @@ LIBFT_SRC = \
 	ft_memdel\
 	ft_memmove\
 	ft_memset\
+	ft_putnbr\
 	ft_strchr\
 	ft_strcmp\
 	ft_stpcpy\

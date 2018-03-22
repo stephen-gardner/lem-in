@@ -6,22 +6,24 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 19:21:49 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/21 23:05:53 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:39:55 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "lem_in.h"
 
-void		fatal_error(char *msg)
+int			arr_size(char **arr)
 {
-	write(2, msg, ft_strlen(msg));
-	exit(1);
+	int	size;
+
+	size = 0;
+	while (arr[size])
+		++size;
+	return (size);
 }
 
-t_bool		set_pos(char *s, int *coord)
+t_bool		set_int(char *s, int *coord)
 {
 	long	n;
 	int		sign;
@@ -74,7 +76,7 @@ char		**split(char *raw, char delim)
 		if (*raw)
 		{
 			arr[i] = raw;
-			trim(arr[i++], " \t\v\f\r");
+			TRIM(arr[i++]);
 		}
 		while (*raw && *raw != delim)
 			++raw;
@@ -82,22 +84,23 @@ char		**split(char *raw, char delim)
 	return (arr);
 }
 
-void		trim(char *raw, char *delim)
+char		*trim(char *raw, char *delim)
 {
 	char	*tmp;
 	int		off;
 	int		len;
 
 	if (!*raw)
-		return ;
+		return (raw);
 	off = 0;
 	while (raw[off] && ft_strchr(delim, raw[off]))
-		off++;
+		++off;
 	tmp = raw + off;
 	if ((len = ft_strlen(tmp)) > 0)
-		len--;
+		--len;
 	while (tmp[len] && ft_strchr(delim, tmp[len]))
-		len--;
+		--len;
 	ft_memmove(raw, tmp, ++len);
 	raw[len] = '\0';
+	return (raw);
 }

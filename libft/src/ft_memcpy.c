@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 01:15:03 by sgardner          #+#    #+#             */
-/*   Updated: 2018/01/29 16:28:22 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:37:30 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memcpy(void *s1, const void *s2, size_t n)
 	while (i < n)
 	{
 		dst[i] = src[i];
-		i++;
+		++i;
 	}
 	return (s1);
 }

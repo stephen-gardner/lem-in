@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 01:17:17 by sgardner          #+#    #+#             */
-/*   Updated: 2018/01/08 16:28:02 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:36:57 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ char	*ft_strchr(const char *s, int c)
 
 	b = (char)c;
 	while (*s && *s != b)
-		s++;
+		++s;
 	return ((*s == b) ? (char *)s : NULL);
 }

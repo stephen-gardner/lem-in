@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 01:19:27 by sgardner          #+#    #+#             */
-/*   Updated: 2018/01/29 16:28:01 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:38:38 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ size_t	ft_strlen(const char *s)
 
 	len = 0;
 	while (s[len])
-		len++;
+		++len;
 	return (len);
 }

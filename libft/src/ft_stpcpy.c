@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 01:16:38 by sgardner          #+#    #+#             */
-/*   Updated: 2018/01/29 16:28:43 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:37:59 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ char	*ft_stpcpy(char *s1, const char *s2)
 
 	i = 0;
 	while ((s1[i] = s2[i]))
-		i++;
+		++i;
 	return (s1 + i);
 }

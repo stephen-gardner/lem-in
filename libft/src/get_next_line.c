@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 15:05:47 by sgardner          #+#    #+#             */
-/*   Updated: 2018/01/31 16:55:18 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:39:15 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int		build_line(t_file **head, char **line, t_file *file)
 		return (0);
 	n = 0;
 	while (buffer[n] && buffer[n] != '\n')
-		n++;
+		++n;
 	if (!append(line, buffer, n))
 	{
 		get_buffer(head, file->fd, TRUE);

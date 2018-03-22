@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 01:17:33 by sgardner          #+#    #+#             */
-/*   Updated: 2017/11/27 21:21:02 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 02:38:16 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	{
 		if (b1[i] != b2[i])
 			break ;
-		i++;
+		++i;
 	}
 	return (b1[i] - b2[i]);
 }

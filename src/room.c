@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 19:01:30 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 04:02:51 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/25 15:58:15 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_room			*add_room(t_graph *graph, char **params)
 	if (arr_size(params) != 3
 		|| !*params[0]
 		|| *params[0] == 'L'
+		|| ft_strchr(params[0], '-')
 		|| find_room(graph->rooms, graph->num_rooms, params[0])
 		|| !(room = build_room(params)))
 	{

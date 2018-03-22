@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 15:25:53 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 03:53:32 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/25 15:39:40 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 # include <errno.h>
 # include "libft.h"
 
-# include <stdio.h> // REMOVE BEFORE SUBMISSION
-
 # define FATAL_ERROR(msg)	fatal_error(msg)
 # define DEFAULT_ERROR		FATAL_ERROR(strerror(errno))
-
 # define TRIM(x)			trim(x, " \t\v\f\r")
 
 typedef struct	s_line
@@ -34,9 +31,8 @@ typedef struct	s_room
 	int				id;
 	int				pos_x;
 	int				pos_y;
-	int				ants;
-	int				priority;
 	int				num_links;
+	struct s_room	*parent;
 	struct s_room	**links;
 }				t_room;
 
@@ -49,6 +45,12 @@ typedef struct	s_graph
 	int				ants;
 	int				num_rooms;
 }				t_graph;
+
+typedef struct	s_ant
+{
+	int				id;
+	t_room			*room;
+}				t_ant;
 
 /*
 ** load.c
@@ -74,6 +76,12 @@ void			print_loadout(t_graph *graph);
 
 t_room			*add_room(t_graph *graph, char **params);
 t_bool			link_rooms(t_graph *graph, char **params);
+
+/*
+** solve.c
+*/
+
+void			solve(t_graph *graph);
 
 /*
 ** util.c

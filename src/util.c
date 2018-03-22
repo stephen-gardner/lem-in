@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 19:21:49 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 02:39:55 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/25 15:35:07 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,12 @@ char		**split(char *raw, char delim)
 		while (*raw && *raw == delim)
 			*raw++ = '\0';
 		if (*raw)
-		{
-			arr[i] = raw;
-			TRIM(arr[i++]);
-		}
+			arr[i++] = raw;
 		while (*raw && *raw != delim)
 			++raw;
 	}
+	while (--i >= 0)
+		TRIM(arr[i]);
 	return (arr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 15:23:56 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 05:03:57 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/22 08:04:08 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,12 @@ int			main(void)
 	load_graph(&graph);
 	if (graph.ants < 1 || graph.num_rooms < 1 || !graph.start || !graph.end)
 		FATAL_ERROR("ERROR");
-	print_loadout(&graph);
 	if (graph.start == graph.end)
+	{
+		print_loadout(&graph);
 		return (0);
+	}
+	solve(&graph);
 	cleanup(&graph);
 	return (0);
 }

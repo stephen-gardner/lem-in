@@ -6,7 +6,7 @@
 /*   By: sgardner <stephenbgardner@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/21 17:26:03 by sgardner          #+#    #+#             */
-/*   Updated: 2018/03/22 04:29:35 by sgardner         ###   ########.fr       */
+/*   Updated: 2018/03/25 15:58:51 by sgardner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static t_bool	load_link(t_graph *graph, char *line)
 	t_bool	res;
 
 	res = FALSE;
-	if (ft_strchr(line, '-'))
-		res = link_rooms(graph, split(line, '-'));
+	res = link_rooms(graph, split(line, '-'));
 	free(line);
 	return (res);
 }
@@ -92,10 +91,10 @@ void			load_graph(t_graph *graph)
 			res = parse_cmd(graph, line);
 		else
 		{
-			if (ft_strchr(line, ' '))
-				res = load_room(graph, line) != NULL;
-			else
+			if (ft_strchr(line, '-'))
 				res = load_link(graph, line);
+			else
+				res = (load_room(graph, line) != NULL);
 		}
 		if (!res)
 			break ;
